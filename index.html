@@ -73,10 +73,17 @@
         border-bottom: none;
       }
 
+      /* ── Sticky top wrapper (header + tab bar) ── */
+      .sticky-top {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background-color: var(--black);
+      }
+
       /* ── Header ── */
       header {
         position: relative;
-        z-index: 1;
         padding: 4rem 0 2rem;
         text-align: center;
         border-bottom: 1px solid var(--border);
@@ -382,7 +389,8 @@
 
       /* ── Tab system ── */
       .tab-radio {
-        position: absolute;
+        position: fixed;
+        left: -9999px;
         opacity: 0;
         pointer-events: none;
       }
@@ -392,9 +400,6 @@
         justify-content: center;
         gap: 0;
         border-bottom: 1px solid var(--border);
-        position: sticky;
-        top: 0;
-        z-index: 10;
         background-color: var(--black);
         padding-top: 1.5rem;
       }
@@ -419,10 +424,9 @@
       }
 
       /* Active tab label */
-      #tab-about:checked ~ .tab-bar label[for="tab-about"],
-      #tab-join:checked ~ .tab-bar label[for="tab-join"],
-      #tab-roles:checked ~ .tab-bar label[for="tab-roles"],
-      #tab-faq:checked ~ .tab-bar label[for="tab-faq"] {
+      #tab-about:checked ~ .sticky-top .tab-bar label[for="tab-about"],
+      #tab-join:checked ~ .sticky-top .tab-bar label[for="tab-join"],
+      #tab-faq:checked ~ .sticky-top .tab-bar label[for="tab-faq"] {
         color: var(--gold);
         border-bottom-color: var(--gold);
       }
@@ -435,10 +439,9 @@
       }
 
       /* Show the active panel */
-      #tab-about:checked ~ .tab-panel-about,
-      #tab-join:checked ~ .tab-panel-join,
-      #tab-roles:checked ~ .tab-panel-roles,
-      #tab-faq:checked ~ .tab-panel-faq {
+      #tab-about:checked ~ .content .tab-panel-about,
+      #tab-join:checked ~ .content .tab-panel-join,
+      #tab-faq:checked ~ .content .tab-panel-faq {
         display: block;
       }
 
@@ -511,13 +514,8 @@
         }
       }
 
-      header {
+      .sticky-top {
         animation: fadeUp 0.6s ease both;
-      }
-
-      .tab-bar {
-        animation: fadeUp 0.6s ease both;
-        animation-delay: 0.1s;
       }
 
       #recruitment {
@@ -528,33 +526,30 @@
   </head>
 
   <body>
-    <header>
+    <!-- Radio inputs as body-level siblings so ~ selectors reach both sticky-top and .content -->
+    <input type="radio" name="tabs" id="tab-about" class="tab-radio" checked />
+    <input type="radio" name="tabs" id="tab-join" class="tab-radio" />
+    <input type="radio" name="tabs" id="tab-faq" class="tab-radio" />
+
+    <div class="sticky-top">
+      <header>
+        <div class="container">
+          <div class="guild-name">Vanguard</div>
+          <div class="guild-sub">Est. MMVI · F<span style="font-size:0.75rem">ROSTWOLF</span> H<span style="font-size:0.75rem">ORDE</span></div>
+          <p class="guild-cross">Cross Server · Cross Faction</p>
+        </div>
+      </header>
+
       <div class="container">
-        <div class="guild-name">Vanguard</div>
-        <div class="guild-sub">Est. MMVI · F<span style="font-size:0.75rem">ROSTWOLF</span> H<span style="font-size:0.75rem">ORDE</span></div>
-        <p class="guild-cross">Cross Server · Cross Faction</p>
+        <nav class="tab-bar">
+          <label for="tab-about" class="tab-label">About</label>
+          <label for="tab-join" class="tab-label">Join</label>
+          <label for="tab-faq" class="tab-label">FAQ</label>
+        </nav>
       </div>
-    </header>
+    </div>
 
-    <div class="container">
-      <input
-        type="radio"
-        name="tabs"
-        id="tab-about"
-        class="tab-radio"
-        checked
-      />
-      <input type="radio" name="tabs" id="tab-join" class="tab-radio" />
-      <input type="radio" name="tabs" id="tab-roles" class="tab-radio" />
-      <input type="radio" name="tabs" id="tab-faq" class="tab-radio" />
-
-      <nav class="tab-bar">
-        <label for="tab-about" class="tab-label">About</label>
-        <label for="tab-join" class="tab-label">Join</label>
-        <label for="tab-roles" class="tab-label">Roles</label>
-        <label for="tab-faq" class="tab-label">FAQ</label>
-      </nav>
-
+    <div class="content container">
       <section id="about" class="tab-panel tab-panel-about">
         <h2>About</h2>
         <p class="about-text">
@@ -581,85 +576,6 @@
           <div class="rule-item">
             <span class="rule-label">Attendance</span>
             <span class="rule-text">You're never obligated to join a group, but if you sign up, show up.</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="roles" class="tab-panel tab-panel-roles">
-        <h2>Roles</h2>
-        <div class="roles-list">
-          <div class="role-category">Leadership</div>
-
-          <div class="role-entry" tabindex="0">
-            <span class="role-name">Legatus-Regent</span
-            ><span class="role-sep">::</span>
-            <span class="role-flavor"
-              >Steward of the Guild's Legacy &amp; Arbiter of the Order</span
-            >
-            <div class="role-tip">Guild Leader</div>
-          </div>
-
-          <div class="role-entry" tabindex="0">
-            <span class="role-name">Praetor</span
-            ><span class="role-sep">::</span>
-            <span class="role-flavor"
-              >Member of the Council of Guild Affairs</span
-            >
-            <div class="role-tip">Guild Officer</div>
-          </div>
-
-          <div class="role-category">Membership</div>
-
-          <div class="role-entry" tabindex="0">
-            <span class="role-name">Centurion</span
-            ><span class="role-sep">::</span>
-            <span class="role-flavor">Veteran Member of the Guild</span>
-            <div class="role-tip">Trusted Member</div>
-          </div>
-
-          <div class="role-entry" tabindex="0">
-            <span class="role-name">Initiate</span
-            ><span class="role-sep">::</span>
-            <span class="role-flavor">Member of the Guild</span>
-            <div class="role-tip">Standard Member</div>
-          </div>
-
-          <div class="role-entry" tabindex="0">
-            <span class="role-name">Recruit</span
-            ><span class="role-sep">::</span>
-            <span class="role-flavor">Aspirant to the Guild</span>
-            <div class="role-tip">New member</div>
-          </div>
-
-          <div class="role-category">Other Roles</div>
-
-          <div class="role-entry" tabindex="0">
-            <span class="role-name">Tribunus</span
-            ><span class="role-sep">::</span>
-            <span class="role-flavor">Proxy of the Council</span>
-            <div class="role-tip">Alts of Leadership</div>
-          </div>
-
-          <div class="role-entry" tabindex="0">
-            <span class="role-name">Evocatus</span
-            ><span class="role-sep">::</span>
-            <span class="role-flavor">Memento Honorum</span>
-            <div class="role-tip">Memorial role for legacy members</div>
-          </div>
-
-          <div class="role-entry" tabindex="0">
-            <span class="role-name">Envoy</span><span class="role-sep">::</span>
-            <span class="role-flavor">Guest of the Guild</span>
-            <div class="role-tip">
-              Friends and visitors, Primarily for Discord
-            </div>
-          </div>
-
-          <div class="role-entry" tabindex="0">
-            <span class="role-name">Paramour</span
-            ><span class="role-sep">::</span>
-            <span class="role-flavor">Consort to the Legatus-Regent</span>
-            <div class="role-tip">Partner of the Guild Leader</div>
           </div>
         </div>
       </section>
@@ -698,9 +614,7 @@
         </div>
       </section>
 
-      <section id="faq" class="tab-panel tab-panel-faq">
-        <h2>FAQ</h2>
-
+      <section id="faq" class="tab-panel tab-panel-faq" style="padding-top: 1rem;">
         <div class="faq-item">
           <div class="faq-q">How do I join?</div>
           <div class="faq-a">
@@ -738,6 +652,73 @@
         <div class="faq-item">
           <div class="faq-q">Is there a Discord?</div>
           <div class="faq-a">Yes. Link coming soon.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">What do the different roles mean? (Mouse over for explanation)</div>
+          <div class="faq-a">
+            <div class="roles-list" style="margin-top: 0.5rem;">
+              <div class="role-category">Leadership</div>
+
+              <div class="role-entry" tabindex="0">
+                <span class="role-name">Legatus-Regent</span><span class="role-sep">::</span>
+                <span class="role-flavor">Steward of the Guild's Legacy &amp; Arbiter of the Order</span>
+                <div class="role-tip">Guild Leader</div>
+              </div>
+
+              <div class="role-entry" tabindex="0">
+                <span class="role-name">Praetor</span><span class="role-sep">::</span>
+                <span class="role-flavor">Member of the Council of Guild Affairs</span>
+                <div class="role-tip">Guild Officer</div>
+              </div>
+
+              <div class="role-category">Membership</div>
+
+              <div class="role-entry" tabindex="0">
+                <span class="role-name">Centurion</span><span class="role-sep">::</span>
+                <span class="role-flavor">Veteran Member of the Guild</span>
+                <div class="role-tip">Trusted Member</div>
+              </div>
+
+              <div class="role-entry" tabindex="0">
+                <span class="role-name">Initiate</span><span class="role-sep">::</span>
+                <span class="role-flavor">Member of the Guild</span>
+                <div class="role-tip">Standard Member</div>
+              </div>
+
+              <div class="role-entry" tabindex="0">
+                <span class="role-name">Recruit</span><span class="role-sep">::</span>
+                <span class="role-flavor">Aspirant to the Guild</span>
+                <div class="role-tip">New member</div>
+              </div>
+
+              <div class="role-category">Other Roles</div>
+
+              <div class="role-entry" tabindex="0">
+                <span class="role-name">Tribunus</span><span class="role-sep">::</span>
+                <span class="role-flavor">Proxy of the Council</span>
+                <div class="role-tip">Alts of Leadership</div>
+              </div>
+
+              <div class="role-entry" tabindex="0">
+                <span class="role-name">Evocatus</span><span class="role-sep">::</span>
+                <span class="role-flavor">Memento Honorum</span>
+                <div class="role-tip">Memorial role for legacy members</div>
+              </div>
+
+              <div class="role-entry" tabindex="0">
+                <span class="role-name">Envoy</span><span class="role-sep">::</span>
+                <span class="role-flavor">Guest of the Guild</span>
+                <div class="role-tip">Friends and visitors, primarily for Discord</div>
+              </div>
+
+              <div class="role-entry" tabindex="0">
+                <span class="role-name">Paramour</span><span class="role-sep">::</span>
+                <span class="role-flavor">Consort to the Legatus-Regent</span>
+                <div class="role-tip">Partner of the Guild Leader</div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
