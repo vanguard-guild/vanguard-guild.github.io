@@ -35,7 +35,7 @@ Other: Tribunus (Leadership alts), Evocatus (Memorial), Envoy (Guest/Discord), P
 ## Conventions
 - All styling is embedded in `<style>` — no external CSS files
 - Section headings use `h2` with Cinzel, 0.75rem, uppercase, gold, wide letter-spacing
-- Use em-dash (`—`) for list bullets in rules
+- Do not use em-dashes (`—`) anywhere in content
 - Roman/Latin naming convention for ranks and flavor text
 - Keep the tone direct and human — avoid AI-sounding filler language
 - Content should feel like it was written by a guild leader, not a marketing department

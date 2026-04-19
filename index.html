@@ -167,6 +167,31 @@
       }
 
       /* ── About ── */
+      #about > h2 {
+        font-size: 1.9rem;
+        text-align: center;
+        letter-spacing: 0.2em;
+        margin-bottom: 1.5rem;
+      }
+
+      .rules-divider {
+        width: 60px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+        margin: 2rem auto;
+      }
+
+      .rules-heading {
+        font-family: "Cinzel", serif;
+        font-size: 1.9rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        text-align: center;
+        margin-bottom: 0;
+      }
+
       .about-text {
         font-size: 1.15rem;
         color: var(--text);
@@ -260,44 +285,37 @@
       }
 
       /* ── Rules ── */
-      .rules-block {
-        margin-bottom: 2.5rem;
+      .rules-list {
+        margin-top: 0.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
       }
 
-      .rules-block:last-child {
-        margin-bottom: 0;
-      }
-
-      .rules-block h3 {
-        font-size: 0.85rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--gold-dim);
-        margin-bottom: 0.75rem;
-      }
-
-      .rules-block ul {
-        list-style: none;
-        padding: 0;
-      }
-
-      .rules-block ul li {
-        padding: 0.4rem 0 0.4rem 1.25rem;
-        position: relative;
-        font-size: 1rem;
-        color: var(--text);
+      .rule-item {
+        padding: 0.75rem 0;
         border-bottom: 1px solid var(--border);
+        font-size: 1rem;
+        line-height: 1.5;
       }
 
-      .rules-block ul li:last-child {
+      .rule-item:last-child {
         border-bottom: none;
       }
 
-      .rules-block ul li::before {
-        content: "—";
-        position: absolute;
-        left: 0;
+      .rule-label {
+        display: block;
+        font-family: "Cinzel", serif;
+        font-size: 1.53rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
         color: var(--gold-dim);
+        margin-bottom: 0.3rem;
+      }
+
+      .rule-text {
+        color: var(--text);
+        font-size: 1.2rem;
       }
 
       /* ── FAQ ── */
@@ -548,44 +566,20 @@
           and memories to be made. Apply Today.
         </p>
 
-        <div style="margin-top: 3rem">
-          <h2>Guild Rules</h2>
-
-          <div class="rules-block">
-            <h3>Conduct</h3>
-            <ul>
-              <li>
-                Remember the Human : Treat eachother with respect, This is a
-                game and we're all here to have fun. It goes without saying that
-                harassment, slurs, or toxicity aren't welcome.
-              </li>
-              <li>Drama stays out of guild chat.</li>
-            </ul>
+        <div class="rules-divider"></div>
+        <div class="rules-heading">Our Code</div>
+        <div class="rules-list">
+          <div class="rule-item">
+            <span class="rule-label">Conduct</span>
+            <span class="rule-text">Remember the Human. Treat each other with respect.<br>This is a game and we're all here to have fun. Harassment, slurs, and toxicity aren't welcome.</span>
           </div>
-
-          <div class="rules-block">
-            <h3>Activity</h3>
-            <ul>
-              <li>No hard attendance requirements. Real life comes first.</li>
-              <li>
-                If you're going inactive for a while, give us a heads up so we
-                don't remove you by accident.
-              </li>
-            </ul>
+          <div class="rule-item">
+            <span class="rule-label">Activity</span>
+            <span class="rule-text">No hard attendance requirements. Real life comes first.</span>
           </div>
-
-          <div class="rules-block">
-            <h3>Grouping</h3>
-            <ul>
-              <li>
-                You're never obligated to join a group, but if you sign up, show
-                up.
-              </li>
-              <li>
-                Help when you can. Nobody's keeping score, but a guild is a
-                community.
-              </li>
-            </ul>
+          <div class="rule-item">
+            <span class="rule-label">Attendance</span>
+            <span class="rule-text">You're never obligated to join a group, but if you sign up, show up.</span>
           </div>
         </div>
       </section>
