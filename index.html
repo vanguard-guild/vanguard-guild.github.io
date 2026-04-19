@@ -254,44 +254,37 @@
         font-weight: 400;
       }
 
+      .role-desc {
+        display: grid;
+      }
+
+      .role-desc > * {
+        grid-area: 1 / 1;
+        transition: opacity 0.35s ease;
+      }
+
       .role-flavor {
         font-size: 0.95rem;
         color: var(--text-muted);
         font-style: italic;
-      }
-
-      /* Tooltip on hover/tap */
-      .role-entry[title] {
-        cursor: help;
+        opacity: 1;
       }
 
       .role-tip {
-        display: none;
-        position: absolute;
-        left: 0;
-        top: 100%;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-left: 2px solid var(--gold-dim);
-        padding: 0.5rem 0.75rem;
-        font-size: 0.8rem;
-        color: var(--text);
-        font-style: normal;
-        z-index: 20;
-        white-space: nowrap;
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        opacity: 0;
         pointer-events: none;
+      }
+
+      .role-entry:hover .role-flavor,
+      .role-entry:focus-within .role-flavor {
+        opacity: 0;
       }
 
       .role-entry:hover .role-tip,
       .role-entry:focus-within .role-tip {
-        display: block;
-      }
-
-      @media (max-width: 480px) {
-        .role-tip {
-          white-space: normal;
-          max-width: 280px;
-        }
+        opacity: 1;
       }
 
       /* ── Rules ── */
@@ -666,60 +659,78 @@
 
               <div class="role-entry" tabindex="0">
                 <span class="role-name">Legatus-Regent</span><span class="role-sep">::</span>
-                <span class="role-flavor">Steward of the Guild's Legacy &amp; Arbiter of the Order</span>
-                <div class="role-tip">Guild Leader</div>
+                <span class="role-desc">
+                  <span class="role-flavor">Steward of the Guild's Legacy &amp; Arbiter of the Order</span>
+                  <span class="role-tip">Guild Leader</span>
+                </span>
               </div>
 
               <div class="role-entry" tabindex="0">
                 <span class="role-name">Praetor</span><span class="role-sep">::</span>
-                <span class="role-flavor">Member of the Council of Guild Affairs</span>
-                <div class="role-tip">Guild Officer</div>
+                <span class="role-desc">
+                  <span class="role-flavor">Member of the Council of Guild Affairs</span>
+                  <span class="role-tip">Guild Officer</span>
+                </span>
               </div>
 
               <div class="role-category">Membership</div>
 
               <div class="role-entry" tabindex="0">
                 <span class="role-name">Centurion</span><span class="role-sep">::</span>
-                <span class="role-flavor">Veteran Member of the Guild</span>
-                <div class="role-tip">Trusted Member</div>
+                <span class="role-desc">
+                  <span class="role-flavor">Veteran Member of the Guild</span>
+                  <span class="role-tip">Trusted Member</span>
+                </span>
               </div>
 
               <div class="role-entry" tabindex="0">
                 <span class="role-name">Initiate</span><span class="role-sep">::</span>
-                <span class="role-flavor">Member of the Guild</span>
-                <div class="role-tip">Standard Member</div>
+                <span class="role-desc">
+                  <span class="role-flavor">Member of the Guild</span>
+                  <span class="role-tip">Standard Member</span>
+                </span>
               </div>
 
               <div class="role-entry" tabindex="0">
                 <span class="role-name">Recruit</span><span class="role-sep">::</span>
-                <span class="role-flavor">Aspirant to the Guild</span>
-                <div class="role-tip">New member</div>
+                <span class="role-desc">
+                  <span class="role-flavor">Aspirant to the Guild</span>
+                  <span class="role-tip">New Member</span>
+                </span>
               </div>
 
               <div class="role-category">Other Roles</div>
 
               <div class="role-entry" tabindex="0">
                 <span class="role-name">Tribunus</span><span class="role-sep">::</span>
-                <span class="role-flavor">Proxy of the Council</span>
-                <div class="role-tip">Alts of Leadership</div>
+                <span class="role-desc">
+                  <span class="role-flavor">Proxy of the Council</span>
+                  <span class="role-tip">Alts of Leadership</span>
+                </span>
               </div>
 
               <div class="role-entry" tabindex="0">
                 <span class="role-name">Evocatus</span><span class="role-sep">::</span>
-                <span class="role-flavor">Memento Honorum</span>
-                <div class="role-tip">Memorial role for legacy members</div>
+                <span class="role-desc">
+                  <span class="role-flavor">Memento Honorum</span>
+                  <span class="role-tip">Memorial role for legacy members</span>
+                </span>
               </div>
 
               <div class="role-entry" tabindex="0">
                 <span class="role-name">Envoy</span><span class="role-sep">::</span>
-                <span class="role-flavor">Guest of the Guild</span>
-                <div class="role-tip">Friends and visitors, primarily for Discord</div>
+                <span class="role-desc">
+                  <span class="role-flavor">Guest of the Guild</span>
+                  <span class="role-tip">Friends and visitors, primarily for Discord</span>
+                </span>
               </div>
 
               <div class="role-entry" tabindex="0">
                 <span class="role-name">Paramour</span><span class="role-sep">::</span>
-                <span class="role-flavor">Consort to the Legatus-Regent</span>
-                <div class="role-tip">Partner of the Guild Leader</div>
+                <span class="role-desc">
+                  <span class="role-flavor">Consort to the Legatus-Regent</span>
+                  <span class="role-tip">Partner of the Guild Leader</span>
+                </span>
               </div>
             </div>
           </div>
