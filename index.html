@@ -33,6 +33,7 @@
 
       html {
         scroll-behavior: smooth;
+        scrollbar-gutter: stable;
       }
 
       body {
@@ -518,6 +519,50 @@
         animation: fadeUp 0.6s ease both;
         animation-delay: 0.2s;
       }
+
+      /* ── Phalanx accent marks ── */
+      .phalanx-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      @media (min-width: 1080px) {
+        .phalanx-bg::before,
+        .phalanx-bg::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          opacity: 0.45;
+        }
+
+        .phalanx-bg::before {
+          left: 0;
+          right: calc(50% + 360px);
+          background: repeating-linear-gradient(
+            45deg,
+            var(--gold) 0,
+            var(--gold) 2px,
+            transparent 2px,
+            transparent 14px
+          );
+          mask-image: linear-gradient(to right, black 40%, transparent 90%);
+        }
+
+        .phalanx-bg::after {
+          right: 0;
+          left: calc(50% + 360px);
+          background: repeating-linear-gradient(
+            135deg,
+            var(--gold) 0,
+            var(--gold) 2px,
+            transparent 2px,
+            transparent 14px
+          );
+          mask-image: linear-gradient(to left, black 40%, transparent 90%);
+        }
+      }
     </style>
   </head>
 
@@ -529,6 +574,7 @@
 
     <div class="sticky-top">
       <header>
+        <div class="phalanx-bg" aria-hidden="true"></div>
         <div class="container">
           <div class="guild-name">Vanguard</div>
           <div class="guild-sub">Est. MMVI · F<span style="font-size:0.75rem">ROSTWOLF</span> H<span style="font-size:0.75rem">ORDE</span></div>
